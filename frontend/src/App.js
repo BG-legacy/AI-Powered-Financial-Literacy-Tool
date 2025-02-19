@@ -1,0 +1,407 @@
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import "./App.css";
+
+/* Import images */
+import FinancialPlannerImg from "./F.jpg";
+import W_BG from "./W.webp";
+import D_BG from "./BL.jpg";
+import F_BG from "./FinancialPlanning_BG.jpg"
+import B_BG from "./DarkB.jpg"
+import FB_2 from "./FP2_BG.jpg"
+
+// Home Page Component
+function Home() {
+  const navigate = useNavigate();
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        {/* Background Image */}
+        <img src={W_BG} alt="Background"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "100%",
+            height: "100%",
+            opacity: 0.9,
+            zIndex: 0,
+          }}
+        />
+
+        {/* Financial Planner Image */}
+        <img src={FinancialPlannerImg} alt="Financial Planner"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -250px)",
+            width: "800px",
+            height: "300px",
+            opacity: 0.9,
+            zIndex: 1,
+          }}
+        />
+
+        {/* Left White Box */}
+        <img src={W_BG} alt="Left White Box"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-750px, -250px)",
+            width: "300px",
+            height: "400px",
+            opacity: 0.9,
+            zIndex: 2,
+          }}
+        />
+
+        {/* Dark Borders */}
+        <img src={D_BG} alt="Left Border"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-450px, -450px)",
+            width: "50px",
+            height: "800px",
+            opacity: 0.9,
+            zIndex: 2,
+          }}
+        />
+
+        <img src={D_BG} alt="Right Border"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(400px, -450px)",
+            width: "50px",
+            height: "800px",
+            opacity: 0.9,
+            zIndex: 2,
+          }}
+        />
+
+        {/* Title and Welcome Text */}
+        <h1 style={{position: "absolute", top: "-50px", fontSize: "50px", color: "Black", zIndex: 1, }}>
+        Cougarwise </h1>
+
+        <p style={{position: "absolute", top: "80px", color: "Black", zIndex: 1,}}>
+        Welcome to your financial planner! </p>
+
+        {/* "Who Are We?" Section */}
+        <h2 style={{position: "absolute", color: "Black", transform: "translate(-600px, -300px)", fontSize: "48px", zIndex: 2, }}>
+          Who are We?
+        </h2>
+
+        <p style={{position: "absolute", color: "Black", transform: "translate(-600px, -100px)", width: "300px", fontSize: "20px", 
+        zIndex: 2,}}>
+          Cougarwise is your personal financial planner, helping you track expenses, set budgets, and reach your goals.
+          Our features include: <br /> 1. Smart budgeting and Goal tracking <br /> 2. Personalized AI financial insights
+          <br /> 3. User-Friendly Dashboard and Reports <br /> 4. AI chatbot for financial advice
+        </p>
+
+        {/* Navigation Buttons */}
+        <button style={{ transform: "translate(-50%, -245px)" }} onClick={() => navigate("/login")}> 
+          Click here to Login </button>
+        <button style={{ transform: "translate(70px, -266px)" }} onClick={() => navigate("/signup")}>
+          Click Here to Signup </button>
+
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          zIndex="2"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+}
+
+// Signup Page Component
+function SignupPage() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    zipcode: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`Firstname: ${formData.firstname}\nLastname: ${formData.lastname}\nEmail: ${formData.email}\nPassword: ${formData.password}\nZipcode: ${formData.zipcode}`);
+  };
+  
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1 
+        style = {{
+          position: "absolute",
+          transform: "translate(0px, -300px)",
+          zIndex: 2,
+        }}>
+        Sign Up for Cougarwise!</h1>
+        <p style = {{zIndex: 2, fontSize: "40px", position: "absolute", width: "600px", transform: "translate(-400px, -100px)"}}>
+        Cougarwise is equipped with the latest technologies to ensure effective, quick, and efficient financial
+        planning.</p>
+
+        <p style = {{zIndex: 2, fontSize: "28px", position: "absolute", width: "600px", transform: "translate(-400px, 150px)"}}>
+        With the use of high end Artificial Intelligence, Cougarwise is designed to give you the best financial advice possible
+        to help you reduce spending, increase your savings, escape debt and even invest!
+        </p>
+        {/* Navigation Buttons */}
+        <button style = {{zIndex: 2, transform: "translate(-400px, -280px", height: "40px"}} onClick={() => navigate("/")}>Go Back to Home</button>
+        <button style = {{zIndex: 2, transform: "translate(400px, -315px", height: "40px"}} onClick={() => navigate("/login")}>Go to Login Page</button>
+
+        {/*Sign-up form*/}
+
+        <form onSubmit={handleSubmit}
+        style = {{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+            transform: "translate(-50%, -50%)",
+            zIndex: 2,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}>
+            <input type = "firstname" name ="firstname" value = {formData.firstname} onChange={handleChange}
+            placeholder="Enter your firstname" required style = {{marginBottom: "10px", padding: "10px", fontSize: "16px",
+            width: "300px", transform: "translate(250px, 0px" }}/>
+
+            <input type = "lastname" name ="lastname" value = {formData.lastname} onChange={handleChange}
+            placeholder="Enter your lastname" required style = {{marginBottom: "10px", padding: "10px", fontSize: "16px",
+            width: "300px", transform: "translate(250px, 0px" }}/>
+
+            <input type = "email" name ="email" value = {formData.email} onChange={handleChange}
+            placeholder="Enter your email" required style = {{marginBottom: "10px", padding: "10px", fontSize: "16px",
+            width: "300px", transform: "translate(250px, 0px" }}/>    
+
+            <input type = "password" name ="password" value = {formData.password} onChange={handleChange}
+            placeholder="Enter your password" required style = {{marginBottom: "10px", padding: "10px", fontSize: "16px",
+            width: "300px", transform: "translate(250px, 0px" }}/>
+
+            <input type = "zipcode" name ="zipcode" value = {formData.zipcode} onChange={handleChange}
+            placeholder="Enter your zipcode" required style = {{marginBottom: "10px", padding: "10px", fontSize: "16px",
+            width: "300px", transform: "translate(250px, 0px" }}/>
+            <button type="submit" style={{ padding: "10px 20px", fontSize: "16px", transform: "translate(250px, 0px" }}>
+            Sign Up
+            </button>
+          </form>
+
+        {/* Images */}
+
+        <img src={B_BG} alt="Bluebackground img"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "100%",
+            height: "100%",
+            opacity: 0.5,
+            zIndex: 1,
+          }}/>
+
+        <img src={F_BG} alt="Financial planner img"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "100%",
+            height: "100%",
+            opacity: 0.9,
+            zIndex: 0,
+          }}/>
+
+        <img src={D_BG} alt="Top Border"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -250px)",
+            width: "100%",
+            height: "50px",
+            opacity: 0.9,
+            zIndex: 2,
+          }}/>
+
+
+      </header>
+    </div>
+  );
+}
+
+// Login Page Component
+function LoginPage() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    firstname: "",
+    lastname: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`Firstname: ${formData.firstname}\nLastname: ${formData.lastname}\nPassword: ${formData.password}\n`);
+  };
+  
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1 
+        style = {{
+          position: "absolute",
+          transform: "translate(0px, -300px)",
+          zIndex: 2,
+        }}>
+        Login to Cougarwise </h1>
+
+        <p style = {{position: "absolute", zIndex: 2, fontSize: 40, width: 500, transform: "translate(-500px, 50px)"}}>
+          Welcome back, log back in to continue receiving Financial Advice to continue furthering your financial progress.</p>
+        {/* Navigation Buttons */}
+        <button style = {{position: "absolute", zIndex: 2, transform: "translate(350px, -300px", height: "40px"}} onClick={() => navigate("/")}>Go Back to Home</button>
+        <button style = {{position: "absolute", zIndex: 2, transform: "translate(-350px, -300px", height: "40px"}} onClick={() => navigate("/signup")}>Go to Signup Page</button>
+      
+                {/*Sign-up form*/}
+
+                <form onSubmit={handleSubmit}
+        style = {{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+            transform: "translate(-50%, -50%)",
+            zIndex: 2,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}>
+            <input type = "firstname" name ="firstname" value = {formData.firstname} onChange={handleChange}
+            placeholder="Enter your firstname" required style = {{marginBottom: "10px", padding: "10px", fontSize: "16px",
+            width: "300px", transform: "translate(250px, 0px" }}/>
+
+            <input type = "lastname" name ="lastname" value = {formData.lastname} onChange={handleChange}
+            placeholder="Enter your lastname" required style = {{marginBottom: "10px", padding: "10px", fontSize: "16px",
+            width: "300px", transform: "translate(250px, 0px" }}/>
+
+            <input type = "password" name ="password" value = {formData.password} onChange={handleChange}
+            placeholder="Enter your password" required style = {{marginBottom: "10px", padding: "10px", fontSize: "16px",
+            width: "300px", transform: "translate(250px, 0px" }}/>
+
+      
+            <button type="submit" style={{ padding: "10px 20px", fontSize: "16px", transform: "translate(250px, 0px" }}
+            onClick={() => navigate("/profile")}>
+            Login
+            </button>
+          </form>
+
+        <img src={D_BG} alt="Top Border"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -250px)",
+            width: "100%",
+            height: "50px",
+            opacity: 0.9,
+            zIndex: 2,
+          }}/>
+
+          <img src={FB_2} alt="background"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "100%",
+            height: "100%",
+            opacity: 0.5,
+            zIndex: 1,
+          }}
+        />
+          
+      </header>
+      
+    </div>
+  );
+}
+
+function ProfilePage() {
+  const navigate = useNavigate();
+
+  return (
+    <div className="App">
+      <header className="App-header">
+      <button style = {{position: "absolute", zIndex: 2, transform: "translate(350px, -300px", height: "40px"}} 
+      onClick={() => navigate("/")}> Go Back to Home</button>
+      </header>
+    </div>
+  )
+
+}
+
+function DashboardPage() {
+  const navigate = useNavigate();
+
+  return (
+    <div className="App">
+      <header className="App-header">
+  
+      </header>
+    </div>
+  )
+
+}
+
+function ChatbotPage() {
+  const navigate = useNavigate();
+
+  return (
+    <div className="App">
+      <header className="App-header">
+  
+      </header>
+    </div>
+  )
+
+}
+
+
+
+// App Component with Routing
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+      </Routes>
+    </Router>
+  );
+}
