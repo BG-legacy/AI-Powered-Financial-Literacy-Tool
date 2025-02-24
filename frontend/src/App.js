@@ -355,8 +355,28 @@ function ProfilePage() {
   return (
     <div className="App">
       <header className="App-header">
+      <h1 
+        style = {{
+          position: "absolute",
+          transform: "translate(0px, -300px)",
+          zIndex: 2,
+        }}>
+      View Your Profile</h1>
       <button style = {{position: "absolute", zIndex: 2, transform: "translate(350px, -300px", height: "40px"}} 
-      onClick={() => navigate("/")}> Go Back to Home</button>
+      onClick={() => navigate("/")}> Logout</button>
+      <button style = {{position: "absolute", zIndex: 2, transform: "translate(-350px, -300px", height: "40px"}} 
+      onClick={() => navigate("/dashboard")}> View Dashboard</button>
+          <img src={D_BG} alt="Top Border"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -250px)",
+            width: "100%",
+            height: "50px",
+            opacity: 0.9,
+            zIndex: 2,
+          }}/>
       </header>
     </div>
   )
@@ -365,15 +385,46 @@ function ProfilePage() {
 
 function DashboardPage() {
   const navigate = useNavigate();
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const toggleChat = () => {
+    setIsChatOpen(!isChatOpen);
+  };
 
   return (
     <div className="App">
       <header className="App-header">
-  
+      <h1 
+        style = {{
+          position: "absolute",
+          transform: "translate(0px, -300px)",
+          zIndex: 2,
+        }}>
+      View Your Dashboard</h1>
+      <button style = {{position: "absolute", zIndex: 2, transform: "translate(-350px, -300px", height: "40px"}} 
+      onClick={() => navigate("/")}> Logout</button>
+      <button style = {{position: "absolute", zIndex: 2, transform: "translate(350px, -300px", height: "40px"}} 
+      onClick={() => navigate("/profile")}> View Profile</button>
+      <button style = {{position: "absolute", zIndex: 2, transform: "translate(450px, -300px", height: "40px"}}
+      OnClick={toggleChat}> chatbot</button>
+      {/*chatbot*/}
+
+      
+
+      {/*Images*/}
+          <img src={D_BG} alt="Top Border"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -250px)",
+            width: "100%",
+            height: "50px",
+            opacity: 0.9,
+            zIndex: 2,
+          }}/>
       </header>
     </div>
   )
-
 }
 
 function ChatbotPage() {
@@ -405,3 +456,5 @@ function App() {
     </Router>
   );
 }
+
+export default App;
